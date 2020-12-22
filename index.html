@@ -14,12 +14,12 @@
         
     
     </head>
-    <body>
+    <body class="parallax">
 
         <!--start of header-->
         <div class="container-fluid p-0">
             <div class="wrapper">
-                <header>
+                <header class="sticky">
                     <nav>
                     <div class="menu-icon">
                         <i class="fa fa-bars fa-2x"></i>
@@ -44,7 +44,7 @@
             <!-- end of header -->
 
             <!--start of content-->
-        <div class="container-fluid parallax">
+        <div class="container-fluid">
             <div class="row rowHeight">
                 <div class="col-1 content">
                     <img src="images/test.png" alt="">
@@ -67,6 +67,16 @@
                     <div class="form-group text2 searchBarContainer">
                         <!-- <label for="exampleInputEmail1">Enter Your City</label> -->
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City Name">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                <div class="text1">
+                    &nbsp;&nbsp; or &nbsp;&nbsp;
+                </div>
+                <form class="" id="searchBar">
+                    <div class="form-group text2 searchBarContainer">
+                        <!-- <label for="exampleInputEmail1">Enter Your City</label> -->
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current Location">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
