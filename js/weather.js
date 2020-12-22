@@ -1,37 +1,45 @@
-
 $(() => {
-    const searchBox = document.querySelector(“.search-box”)
-    const apiKey = "Y31faa444f98c7147da938529e5c20a15";
-    const inputVal = input.value;
-    const { main, name, sys, weather } = data;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=standard`;
   
-    
-    fetch(url)
-    .then(response => response.json())
+  const input = document.getElementById('userInput').value;
+  const apiKey = "c69d1b8c1ab292df373c204197005194";
+  const url = `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=${input}&&appid=${apiKey}`  
+
   
-    .then(data => {
+  fetch(url)  
+
+  .then(response => response.json())
+  
+  .then(data => {
       console.log(data);
+      // console.log(data.weather[0].id);
+      // console.log(data.weather[0].description);
+      // console.log(data.coord);
+      // console.log(data.name);
+      let newArr = []
+      // data.forEach((obj) => {
+        
+        if(data.weather[0].id >= 600 && data.weather[0].id <= 622){
+
+          newArr.push(data)
+        }
+        else{
+          
+          newArr.push("No snow today")
+        }
+
+      // })
+      console.log(newArr);
+    //need city name, cords, and description
+  })
+  
+  .catch((error)=>{
+      console.log(error)
+  
     
   })
-    .catch(() => {
-      msg.textContent = "Please search for a valid city";
-    });
+
+
   
   
-    
-    .catch((error)=>{
-        console.log(error)
-  
-    })
-  
-  msg.textContent = "";
-  form.reset();
-  input.focus();
-  
-  })
-    
-  
-  
-  
+})
   
