@@ -74,10 +74,15 @@ new mapboxgl.Marker(userel)
 
 fetch('https://ipapi.co/json/')
 .then(function(response) {
-  response.json().then(jsonData => {
+    response.json().then(jsonData => {
     console.log(jsonData);
-  });
+    });
 })
 .catch(function(error) {
-  console.log(error)
+    console.log(error)
 });
+
+
+// webcam API
+
+fetch("https://api.windy.com/api/webcams/v2/list/nearby=39.7348,-104.9653,50?key=EIbRugfzPgAfeh0Y3AlQubwvpWPRkX10")
