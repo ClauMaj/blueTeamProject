@@ -72,17 +72,25 @@ new mapboxgl.Marker(userel)
     .addTo(map);
 
 
-fetch('https://ipapi.co/json/')
-.then(function(response) {
-    response.json().then(jsonData => {
-    console.log(jsonData);
-    });
-})
-.catch(function(error) {
-    console.log(error)
-});
+    // get user current IP
+// fetch('https://ipapi.co/json/')
+// .then(function(response) {
+//     response.json().then(jsonData => {
+//     console.log(jsonData);
+//     });
+// })
+// .catch(function(error) {
+//     console.log(error)
+// });
 
 
 // webcam API
 
-fetch("https://api.windy.com/api/webcams/v2/list/nearby=39.7348,-104.9653,50?key=EIbRugfzPgAfeh0Y3AlQubwvpWPRkX10")
+// fetch("https://api.windy.com/api/webcams/v2/list/nearby=39.7348,-104.9653,50?show=webcams:player,url&key=EIbRugfzPgAfeh0Y3AlQubwvpWPRkX10")
+// .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//     })
+//     .catch(() => {
+//         console.log("Please search for a valid url");
+//     });
