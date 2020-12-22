@@ -9,31 +9,33 @@ body {
     font-weight: lighter;
 }
 
-header {
-    width: 100%;
-    height: 15vh;
-    background: url(../images/snow.jpeg) no-repeat 50% 50%;
-    background-size: cover;
-}
 
 .wrapper{
     position: relative;
     z-index: 100;
 }
 
+ul li{
+    list-style-type: none;
+    
+}
 
 .content {
-    width: 94%;
+    width: 100%;
+    height: 100%;
     margin: 4em auto;
     font-size: 20px;
     line-height: 30px;
+    display: flex;
     text-align: justify;
     justify-content: center;
-    display: flex;
+    align-items: center;
     position: relative;
     z-index: 90;
     
 }
+
+
 
 .logo {
     line-height: 60px;
@@ -46,70 +48,63 @@ header {
     text-shadow: 2px 2px black;
     letter-spacing: 2px;
 }
+
+
 .parallax{
-    background-image: url("../images/snowglobe.jpg");
+    background-image: url("../images/snowglobe2.jpeg");
     height: 100vh;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-nav {
-    position: fixed;
-    width: 100%;
-    line-height: 60px;
+.aboutUsParallax{
+    /* background-color: #013A63; */
+    background-image: url("../images/gradient2.jpg");
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: scroll;
 }
 
-nav ul {
-    line-height: 60px;
-    list-style: none;
-    background: rgba(0, 0, 0, 0);
+.text1{
+    color: #013A63;
+    text-shadow: 1px 1px rgb(211, 216, 222);
+}
+
+.text2{
+    color: antiquewhite;
+    text-shadow: black;
+}
+
+
+.rowHeight{
+    height: 750px;
+}
+
+.searchBarContainer {
+    display: flex;
+    width: 100%; /* Set full-width to expand the whole page */
+    height: 200px;
     overflow: hidden;
-    color: #fff;
-    padding: 0;
-    text-align: right;
-    margin: 0;
-    padding-right: 40px;
-    transition: 1s;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
 }
 
-nav.black ul {
-    background: rgb(220, 216, 188);
+.map.mapCircle {
+    width: 560px;
+    height: 560px;
+}
+.mapCircle>div>div:first-child {
+    -moz-border-radius: 238px;
+    -webkit-border-radius: 238px;
+    border-radius: 238px;
 }
 
-nav ul li {
-    display: inline-block;
-    padding: 16px 40px;;
-}
 
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: sans-serif;
-    text-shadow: 2px 2px black;
-}
-
-a:hover{
-    background-color: rgb(184, 183, 170);
-    color: black;
-    text-decoration: none;
-    
-}
-
-.menu-icon {
-    line-height: 60px;
-    width: 100%;
-    background: #000;
-    text-align: right;
-    box-sizing: border-box;
-    padding: 15px 24px;
-    cursor: pointer;
-    color: #fff;
-    display: none;
-}
 
 @media(max-width: 786px) {
 
@@ -121,7 +116,7 @@ a:hover{
 
     nav ul {
         max-height: 0px;
-        background: #000;
+        
     }
 
     nav.black ul {
