@@ -22,7 +22,7 @@ ul li{
 }
 
 .content {
-    width: 100%;
+    width: 75%;
     height: 100%;
     margin: 4em auto;
     font-size: 20px;
@@ -31,6 +31,20 @@ ul li{
     text-align: justify;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 90;
+    
+}
+.content2 {
+    width: 75%;
+    height: 90%;
+    margin: 4em auto;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    text-align: justify;
+    justify-content: center;
+    align-items: flex-start;
     position: relative;
     z-index: 90;
     
@@ -97,8 +111,8 @@ ul li{
 }
 
 .map.mapCircle {
-    width: 60%;
-    height: 85%;
+    width: 50%;
+    height: 80%;
 }
 .mapCircle>div>div:first-child {
     -moz-border-radius: 238px;
@@ -108,12 +122,12 @@ ul li{
 
 
 
-@media(max-width: 786px) {
+/* @media(max-width: 786px) {
 
     .content {
         width: 300px;
         /* height: 100%; */
-        margin: 4em auto;
+        /* margin: 4em auto;
         font-size: 20px;
         line-height: 30px;
         display: flex;
@@ -123,9 +137,9 @@ ul li{
         position: relative;
         z-index: 90;
         
-    }
+    } */
 
-    .logo {
+    /* .logo {
         position: fixed;
         top: 0;
         margin-top: 16px;
@@ -155,14 +169,31 @@ ul li{
         display: block;
     }
 
-}
+}  */
 
-    @media only screen and (max-width: 768px) {
-        /* For mobile phones: */
-        [class*="col-"] {
-        width: 100%;
-        }
+/* @media only screen and (max-width: 991px){
+    [class*="content"]{
+    width: 75%;
+    height: 100%;
+    margin: 4em auto;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     }
+} */
+
+    /* @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        /* [class*="col-"] {
+        width: 100%;
+        
+        }
+    } */
 
 /* .opacity{
     background-color: black;
