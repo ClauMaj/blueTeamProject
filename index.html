@@ -48,19 +48,19 @@
             <!--start of content-->
         <div class="container-fluid">
             <div class="row rowHeight">
-                <div class="col-1 content">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-1 col-xl-1 content">
                     <img src="images/test.png" alt="">
                 </div>
-                <div class="col-10 content" id="globe">
-                    <div id="map" class="map mapCircle" style="position: relative; background-color: transparent; overflow: hidden;">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 content" id="globe">
+                    <div class="map mapCircle" style="position: relative; background-color: transparent; overflow: hidden;">
                         <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
-                            <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%;">
+                            <div id="map" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%;">
                                 <!-- <img src="images/gradient.jpeg" alt=""> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-1 content">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-1 col-xl-1 content">
                     <img src="images/test.png" alt="">
                 </div>
             </div>
@@ -78,8 +78,8 @@
                 <form class="" id="searchBar">
                     <div class="form-group text2 searchBarContainer">
                         <!-- <label for="exampleInputEmail1">Enter Your City</label> -->
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current Location">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current Location"> -->
+                        <button id="locationButton" type="submit" class="btn btn-primary">Use Current Location</button>
                     </div>
                 </form>
             </div>
@@ -94,5 +94,13 @@
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
         <script src="js/claude.js"></script>
         <script src="js/blueTeam.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+        <script>
+            let locationButton = document.getElementById('locationButton')
+            locationButton.addEventListener('click', (e) => {
+                
+            })
+        </script>
     </body>
     </html>
