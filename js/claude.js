@@ -7,7 +7,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
     center: [-96, 37.8],
-    zoom: 3
+    zoom: 2.5
 });
 
 // create location points on map
