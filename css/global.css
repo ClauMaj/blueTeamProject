@@ -4,6 +4,7 @@ html, body {
     width: 100%;
 }
 
+
 body {
     font-family: "Helvetica Neue",sans-serif;
     font-weight: lighter;
@@ -57,6 +58,7 @@ ul li{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow:scroll;
 }
 .aboutUsParallax{
     /* background-color: #013A63; */
@@ -91,12 +93,12 @@ ul li{
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
 }
 
 .map.mapCircle {
-    width: 560px;
-    height: 560px;
+    width: 60%;
+    height: 85%;
 }
 .mapCircle>div>div:first-child {
     -moz-border-radius: 238px;
@@ -107,6 +109,21 @@ ul li{
 
 
 @media(max-width: 786px) {
+
+    .content {
+        width: 300px;
+        /* height: 100%; */
+        margin: 4em auto;
+        font-size: 20px;
+        line-height: 30px;
+        display: flex;
+        text-align: justify;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 90;
+        
+    }
 
     .logo {
         position: fixed;
@@ -139,6 +156,13 @@ ul li{
     }
 
 }
+
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        [class*="col-"] {
+        width: 100%;
+        }
+    }
 
 /* .opacity{
     background-color: black;
