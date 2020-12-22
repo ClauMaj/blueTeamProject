@@ -9,13 +9,6 @@ body {
     font-weight: lighter;
 }
 
-/* header {
-    /* width: 100%;
-    height: 15vh; */
-    /* background: url(../images/snow.jpeg) no-repeat 50% 50%; */
-    
-    /* background-size: cover; */
-/* } */ */
 
 .wrapper{
     position: relative;
@@ -28,23 +21,20 @@ ul li{
 }
 
 .content {
-    width: 94%;
+    width: 100%;
+    height: 100%;
     margin: 4em auto;
     font-size: 20px;
     line-height: 30px;
+    display: flex;
     text-align: justify;
     justify-content: center;
-    display: flex;
+    align-items: center;
     position: relative;
     z-index: 90;
     
 }
 
-.contentList{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 
 .logo {
@@ -84,26 +74,29 @@ ul li{
     text-shadow: 1px 1px rgb(211, 216, 222);
 }
 
-.col-container {
-    display: table; /* Make the container element behave like a table */
-    width: 100%; /* Set full-width to expand the whole page */
-    height: 100%;
-    /* background-color: green; */
-    margin-right: 0;
-    overflow: scroll;
+.text2{
+    color: antiquewhite;
+    text-shadow: black;
 }
+
+
+.rowHeight{
+    height: 750px;
+}
+
 .searchBarContainer {
-    display: inline-block;
+    display: flex;
     width: 100%; /* Set full-width to expand the whole page */
-    height: 100%;
+    height: 200px;
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    align-content: flex-start;
 }
 
 .map.mapCircle {
-    width: 476px;
-    height: 476px;
+    width: 560px;
+    height: 560px;
 }
 .mapCircle>div>div:first-child {
     -moz-border-radius: 238px;
