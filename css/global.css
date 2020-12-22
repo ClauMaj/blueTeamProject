@@ -65,14 +65,14 @@ ul li{
 }
 
 
-.parallax{
+.bodyBackground{
     background-image: url("../images/snowglobe2.jpeg");
     height: 100vh;
-    background-attachment: fixed;
+    background-attachment:local;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat:no-repeat;
     background-size: cover;
-    overflow:scroll;
+    overflow: scroll;
 }
 .aboutUsParallax{
     /* background-color: #013A63; */
@@ -82,7 +82,15 @@ ul li{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: scroll;
+    overflow: hidden;
+}
+
+.secondBackground{
+    background-image: url("../images/gradient2.jpg");
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    z-index: 10;
 }
 
 .text1{
@@ -97,7 +105,7 @@ ul li{
 
 
 .rowHeight{
-    height: 750px;
+    height: 550px;
 }
 
 .searchBarContainer {
@@ -111,13 +119,13 @@ ul li{
 }
 
 .map.mapCircle {
-    width: 50%;
-    height: 80%;
+    width: 60%;
+    height: 90%;
 }
 .mapCircle>div>div:first-child {
-    -moz-border-radius: 238px;
-    -webkit-border-radius: 238px;
-    border-radius: 238px;
+    -moz-border-radius: 338px;
+    -webkit-border-radius: 338px;
+    border-radius: 338px;
 }
 
 
