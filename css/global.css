@@ -97,8 +97,8 @@ ul li{
 }
 
 .map.mapCircle {
-    width: 560px;
-    height: 560px;
+    width: 60%;
+    height: 85%;
 }
 .mapCircle>div>div:first-child {
     -moz-border-radius: 238px;
