@@ -4,6 +4,7 @@ $(() => {
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhdW1haiIsImEiOiJja2l5dGVzeDcyaXUzMzRwNGJ3ZjE4b2tqIn0.1PMSrPzu3pEeNqUTGTaQbg';
 var curentMarkers = [];
+var curentUserMarker = [];
 
 // create map
 var map = new mapboxgl.Map({
@@ -81,11 +82,12 @@ const removeMarkers = (currentMarkers) => {
 const createUserMarker = (lon,lat) => {
     var userel = document.createElement('div');
     userel.className = 'userMarker';
-    new mapboxgl.Marker(userel)
+    var userMark = new mapboxgl.Marker(userel)
         .setLngLat([lon,lat])
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
         .setHTML('<h3>User</h3><p>You are here!</p>'))
         .addTo(map);
+        curentUserMarker.push(userMark);
 };
 
 
@@ -107,21 +109,25 @@ $('#locationButton').click ((e) => {
 }) 
 
 // remove current markers from map + get location of the city + show it on map
-// $('#locationButton').click ((e) => {
-//     e.preventDefault();
-//     fetch('https://ipapi.co/json/')
-//     .then(response => response.json())
-//     .then((data) => {
-//         console.log(data);
-//         console.log(curentMarkers);
-//         removeMarkers(curentMarkers);
-//         curentMarkers = [];
-//         createUserMarker(data.longitude,data.latitude);
-//     })
-//     .catch(function(error) {
-//     console.log(error)
-//     });
-// }) 
+$('#submitCity').click ((e) => {
+    e.preventDefault();
+    let pickedCity = $('#cityInput').val();
+    console.log(pickedCity);
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickedCity}.json?country=US&access_token=${mapboxgl.accessToken}`)
+    .then(response => response.json())
+    .then((data) => {
+        console.log(data);
+        console.log(curentMarkers);
+        removeMarkers(curentMarkers);
+        removeMarkers(curentUserMarker);
+        curentMarkers = [];
+        curentUserMarker = [];
+        createUserMarker(data.features[0].center[0],data.features[0].center[1]);
+    })
+    .catch(function(error) {
+    console.log(error)
+    });
+}) 
 
 
 // webcam API
@@ -138,3 +144,5 @@ $('#locationButton').click ((e) => {
 
 
 }) // jQuery end
+
+
