@@ -3,7 +3,7 @@ $(() => {
     
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhdW1haiIsImEiOiJja2l5dGVzeDcyaXUzMzRwNGJ3ZjE4b2tqIn0.1PMSrPzu3pEeNqUTGTaQbg';
-
+var curentMarkers = [];
 
 // create map
 var map = new mapboxgl.Map({
@@ -58,36 +58,72 @@ geojson.features.forEach(function(marker) {
 var el = document.createElement('div');
 el.className = 'marker';
 
+
 // make a marker for each feature and add to the map + popup
-new mapboxgl.Marker(el)
+let mark = new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
     .addTo(map);
+    curentMarkers.push(mark);
 });
+
+
+// remove elements from map
+const removeMarkers = (currentMarkers) => {
+    if (currentMarkers!== null) {
+        for (var i = currentMarkers.length- 1; i >= 0; i--) {
+            currentMarkers[i].remove();
+        }
+    }
+}
 // make a marker for user
-var userel = document.createElement('div');
-userel.className = 'userMarker';
-new mapboxgl.Marker(userel)
-    .setLngLat([-84.3554, 34.655])
-    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>User</h3><p>Location</p>'))
-    .addTo(map);
+const createUserMarker = (lon,lat) => {
+    var userel = document.createElement('div');
+    userel.className = 'userMarker';
+    new mapboxgl.Marker(userel)
+        .setLngLat([lon,lat])
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML('<h3>User</h3><p>You are here!</p>'))
+        .addTo(map);
+};
 
 
-       //get user current IP
-
+    //remove current markers + get user current location (ipApi) + show it on map
 $('#locationButton').click ((e) => {
     e.preventDefault();
     fetch('https://ipapi.co/json/')
     .then(response => response.json())
     .then((data) => {
         console.log(data);
+        console.log(curentMarkers);
+        removeMarkers(curentMarkers);
+        curentMarkers = [];
+        createUserMarker(data.longitude,data.latitude);
     })
     .catch(function(error) {
     console.log(error)
     });
 }) 
+
+// remove current markers from map + get location of the city + show it on map
+// $('#locationButton').click ((e) => {
+//     e.preventDefault();
+//     fetch('https://ipapi.co/json/')
+//     .then(response => response.json())
+//     .then((data) => {
+//         console.log(data);
+//         console.log(curentMarkers);
+//         removeMarkers(curentMarkers);
+//         curentMarkers = [];
+//         createUserMarker(data.longitude,data.latitude);
+//     })
+//     .catch(function(error) {
+//     console.log(error)
+//     });
+// }) 
+
+
 // webcam API
 
 // fetch("https://api.windy.com/api/webcams/v2/list/nearby=39.7348,-104.9653,50?show=webcams:player,url&key=EIbRugfzPgAfeh0Y3AlQubwvpWPRkX10")
