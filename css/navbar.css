@@ -3,6 +3,7 @@ nav {
     display: flex;
     width: 100%;
     line-height: 60px;
+    z-index: 1000;
 }
 
 nav ul {
@@ -18,9 +19,6 @@ nav ul {
     transition: 1s;
 }
 
-nav.black ul {
-    background: rgb(220, 216, 188);
-}
 
 nav ul li {
     display: inline-block;
