@@ -138,6 +138,7 @@ ul li{
 .snowText{
     font-family: Frostbitten Wanker;
     color: antiquewhite;
+    font-style: normal;
 }
 
 
@@ -159,15 +160,7 @@ ul li{
     align-content: center;
 }
 
-.map.mapCircle {
-    width: 60%;
-    height: 90%;
-}
-.mapCircle>div>div:first-child {
-    -moz-border-radius: 338px;
-    -webkit-border-radius: 338px;
-    border-radius: 338px;
-}
+
 
 
 
