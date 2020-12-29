@@ -63,7 +63,7 @@ ul li{
     line-height: 60px;
     position: fixed;
     float: left;
-    margin: 16px 46px;
+    margin: 9px 30px;
     color: #fff;
     font-weight: bold;
     font-size: 20px;
@@ -136,7 +136,7 @@ ul li{
 }
 
 .snowText{
-    font-family: 'Snowburst One', cursive;
+    font-family: Frostbitten Wanker;
     color: antiquewhite;
 }
 
