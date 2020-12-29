@@ -33,3 +33,13 @@ body {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     }
+
+    .map.mapCircle {
+        width: 60%;
+        height: 90%;
+    }
+    .mapCircle>div>div:first-child {
+        border-radius: 338px;
+        -webkit-border-radius: 338px;
+        -moz-border-radius: 338px;
+    }
