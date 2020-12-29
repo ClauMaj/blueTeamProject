@@ -100,6 +100,7 @@ $('#locationButton').click ((e) => {
         console.log(data);
         console.log(curentMarkers);
         removeMarkers(curentMarkers);
+        removeMarkers(curentUserMarker);
         curentMarkers = [];
         createUserMarker(data.longitude,data.latitude);
     })
@@ -113,7 +114,7 @@ $('#submitCity').click ((e) => {
     e.preventDefault();
     let pickedCity = $('#cityInput').val();
     console.log(pickedCity);
-    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickedCity}.json?country=US&access_token=${mapboxgl.accessToken}`)
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickedCity}.json?access_token=${mapboxgl.accessToken}`)
     .then(response => response.json())
     .then((data) => {
         console.log(data);
