@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Snow Finder</title>
+        <title>Slope Search</title>
         <!-- <link rel="stylesheet" href=../flexbox.css> -->
         <link rel="stylesheet" href="css/global.css">
         <link rel="stylesheet" href="css/navbar.css">
@@ -17,22 +17,26 @@
         
     
     </head>
-    <body class="bodyBackground">
+    <body>
+        <div class="container-fluid p-0">
 
+        
         <!--start of header-->
-        <div class="container-fluid p-0" id="navbar">
-            <div class="wrapper">
+        <div class="bodyBackground">
+            <div class="navbar sticky-top">
                 <header class="sticky">
                     <nav>
                     <div class="menu-icon">
                         <i class="fa fa-bars fa-2x"></i>
                     </div>
                     <div class="logo snowText">
-                        snowfinder
+                        slope search
                     </div>
+                    <!-- <div class="logo snowText">
+                        ski finder
+                    </div> -->
                     <div class="menu" id="menu">
-                        <ul class="snowText">
-                            <li><a href="index.html">home</a></li>
+                        <ul class="snowText ulContainer">
                             <li><a href="html/aboutus.html">about us</a></li>
                             
                         </ul>
@@ -41,13 +45,12 @@
                 </header>
 
             </div>
-        </div>
+        
 
         
             <!-- end of header -->
 
             <!--start of map-->
-        <div class="container-fluid" style="position: absolute;">
             <div class="row rowHeight">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 content" id="globe">
                     <div class="map mapCircle" style="position: relative; background-color: transparent; overflow: hidden;">
@@ -66,7 +69,7 @@
 
             <div class="row searchBarContainer">
                 <form class="" id="searchBar">
-                    <div class="form-group text2 searchBarContainer">
+                    <div class="form-group snowText searchBarContainer">
                         <!-- <label for="exampleInputEmail1">Enter Your City</label> -->
                         <input type="text" class="form-control" id="cityInput" placeholder="City Name">
                         <button id="submitCity" type="submit" class="btn btn-primary">Submit</button>
@@ -76,39 +79,37 @@
                     &nbsp;&nbsp; or &nbsp;&nbsp;
                 </div>
                 <form class="" id="searchBar">
-                    <div class="form-group text2 searchBarContainer">
+                    <div class="form-group snowText searchBarContainer">
                         <!-- <label for="exampleInputEmail1">Enter Your City</label> -->
                         <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Current Location"> -->
                         <button id="locationButton" type="submit" class="btn btn-primary">Use Current Location</button>
                     </div>
                 </form>
             </div>
+        </div>
+        <!--end of search bar-->
+        <div class="results">
+            
+        </div>
+        <!-- second section -->
+        <div class="secondBackground">
 
-                <!--end of search bar-->
-                
-            <!-- <div class="row">
-                <div class="col content">
-                    <p class="text2">
-                        This is Where Stuff Should Be Showing Up
-                    </p>
+            <!-- graphs begin -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 content">
+                            <img src="images/test.png" alt="">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 content">
+                        <img src="images/test.png" alt="">
+                </div>
+                </div>
 
-                </div>
-            </div>
-                <!--graphs begin-->
-            <!-- <div class="">
-                <div class="row rowHeight2">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-1 col-xl-6 content">
-                        <img src="images/test.png" alt="">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-1 col-xl-6 content">
-                        <img src="images/test.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        </div>
             
 
         <!--end of graphs-->
+
+    </div>
             
         
 

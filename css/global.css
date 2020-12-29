@@ -2,6 +2,8 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    /* background-color: rgb(10, 10, 79); */
+    
 }
 
 
@@ -10,11 +12,17 @@ body {
     font-weight: lighter;
 }
 
+.graphContainer{
+    background-image: url("../images/gradient.jpeg");
+    margin: 0;
+}
+
 
 .wrapper{
     position: relative;
     z-index: 100;
 }
+
 
 ul li{
     list-style-type: none;
@@ -46,7 +54,6 @@ ul li{
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    z-index: 90;
     
 }
 
@@ -56,7 +63,7 @@ ul li{
     line-height: 60px;
     position: fixed;
     float: left;
-    margin: 16px 46px;
+    margin: 9px 30px;
     color: #fff;
     font-weight: bold;
     font-size: 20px;
@@ -65,14 +72,19 @@ ul li{
 }
 
 
+/*backgrounds*/
+
+
 .bodyBackground{
-    background-image: url("../images/snowglobe2.jpeg");
-    height: 100vh;
+    background-image: url("../images/snowglobe2.jpeg"), url("../images/gradient2.jpg");
+    height: 100%;
+    width: 100%;
     background-attachment:local;
     background-position: center;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
-    overflow: scroll;
+    overflow: visible;
+    z-index: 100;
 }
 .aboutUsParallax{
     /* background-color: #013A63; */
@@ -86,12 +98,32 @@ ul li{
 }
 
 .secondBackground{
-    background-image: url("../images/gradient2.jpg");
-    height: 100vh;
-    margin: 0px;
-    padding: 0px;
-    z-index: 10;
+    background-image: url("../images/gradient2.jp2g"), url("../images/gradient2.jpg");
+    height: 100%;
+    width: 100%;
+    background-attachment:local;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 30px 40px rgba(0,0,0,.1);
 }
+.results{
+    height: 10px;
+    width: 100%;
+    background-color: #6FCAEF;
+
+}
+
+
+.navBackground{
+    background-color: #6FCAEF;
+    z-index: 1000;
+}
+
+
+/* text settings */
 
 .text1{
     color: #013A63;
@@ -103,15 +135,24 @@ ul li{
     text-shadow: black;
 }
 
+.snowText{
+    font-family: Frostbitten Wanker;
+    color: antiquewhite;
+}
+
 
 .rowHeight{
-    height: 550px;
+    height: 450px;
+}
+
+.rowHeight2{
+    height: 100%;
 }
 
 .searchBarContainer {
     display: flex;
     width: 100%; /* Set full-width to expand the whole page */
-    height: 200px;
+    height: 300px;
     overflow: hidden;
     justify-content: center;
     align-items: center;
@@ -127,6 +168,9 @@ ul li{
     -webkit-border-radius: 338px;
     border-radius: 338px;
 }
+
+
+
 
 
 
@@ -179,32 +223,3 @@ ul li{
 
 }  */
 
-/* @media only screen and (max-width: 991px){
-    [class*="content"]{
-    width: 75%;
-    height: 100%;
-    margin: 4em auto;
-    font-size: 20px;
-    line-height: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: justify;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    }
-} */
-
-    /* @media only screen and (max-width: 768px) {
-        /* For mobile phones: */
-        /* [class*="col-"] {
-        width: 100%;
-        
-        }
-    } */
-
-/* .opacity{
-    background-color: black;
-    opacity: 50%;
-    height: 30vh;
-} */
