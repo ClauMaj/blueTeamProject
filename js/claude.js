@@ -14,60 +14,49 @@ var map = new mapboxgl.Map({
     zoom: 2.7
 });
 
-// create location points on map
+// create location points for the map
 var geojson = {
     type: 'FeatureCollection',
-    features: [{
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-77.032, 38.913]
-    },
-    properties: {
-        title: 'Snow 1',
-        description: 'Washington, D.C.'
-    }
-    },
-    {
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-104.9653, 39.7348]
-    },
-    properties: {
-        title: 'Snow 3',
-        description: 'Denver, Colorado'
-    }
-    },
-    {
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-122.414, 37.776]
-    },
-    properties: {
-        title: 'Snow 2',
-        description: 'San Francisco, California'
-    }
-    }]
+    features: []
 };
 
+// create markers for snow
+
+const createSnowMarkers = (snowCities) => {
+    snowCities.data.forEach((item) => {
+        let newMark = {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [item.city.coord.lon, item.city.coord.lat]
+            },
+            properties: {
+                title: 'Snow',
+                description: `${item.city.name}, ${item.city.country}`,
+                // distance: 0  work here to create function for distance.
+            }
+        }
+        geojson.features.push(newMark);
+    })
+}
+
 // add markers to map
-geojson.features.forEach(function(marker) {
+const addMarkersToMap = (geojson) => {
+    geojson.features.forEach(function(marker) {
 
-// create a HTML element for each feature
-var el = document.createElement('div');
-el.className = 'marker';
+    // create a HTML element for each feature
+    var el = document.createElement('div');
+    el.className = 'marker';
 
-
-// make a marker for each feature and add to the map + popup
-let mark = new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-    .addTo(map);
-    curentMarkers.push(mark);
-});
+    // make a marker for each feature and add to the map + popup
+    let mark = new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+        .addTo(map);
+        curentMarkers.push(mark);
+    });
+}
 
 
 // remove elements from map
@@ -103,6 +92,12 @@ $('#locationButton').click ((e) => {
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         createUserMarker(data.longitude,data.latitude);
+        map.flyTo({
+            center: [data.longitude,data.latitude],
+            zoom: 2.7
+            });
+        createSnowMarkers(snowCities);
+        addMarkersToMap(geojson);
     })
     .catch(function(error) {
     console.log(error)
@@ -113,17 +108,20 @@ $('#locationButton').click ((e) => {
 $('#submitCity').click ((e) => {
     e.preventDefault();
     let pickedCity = $('#cityInput').val();
-    console.log(pickedCity);
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickedCity}.json?access_token=${mapboxgl.accessToken}`)
     .then(response => response.json())
     .then((data) => {
-        console.log(data);
-        console.log(curentMarkers);
         removeMarkers(curentMarkers);
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
         createUserMarker(data.features[0].center[0],data.features[0].center[1]);
+        map.flyTo({
+            center: [data.features[0].center[0],data.features[0].center[1]],
+            zoom: 2.7
+            });
+        createSnowMarkers(snowCities);
+        addMarkersToMap(geojson);
     })
     .catch(function(error) {
     console.log(error)

@@ -203,6 +203,10 @@ ul li{
     align-content: center;
 }
 
+.fa-li { /* font awesome icons */
+    margin: 10px 0;
+}
+
 
 .cardBackground{
     background-color: #172C5B;
@@ -211,6 +215,7 @@ ul li{
     justify-content: center;
     border-style: none;
 }
+
 
 .cardBackground2{
     background-color: #172C5B;
