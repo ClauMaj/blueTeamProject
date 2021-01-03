@@ -8,6 +8,7 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
     }
     .marker {
     background-image: url('../images/snowflake.png');
@@ -42,4 +43,19 @@ body {
         border-radius: 338px;
         -webkit-border-radius: 338px;
         -moz-border-radius: 338px;
+    }
+
+    .activity_rounded {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -khtml-border-radius: 50%;
+    }
+    
+    .activity_rounded img  {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -khtml-border-radius: 50%;
+        vertical-align: middle;
     }
