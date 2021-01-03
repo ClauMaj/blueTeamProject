@@ -22,7 +22,9 @@ var geojson = {
 
 // create markers for snow
 
-const createSnowMarkers = (snowCities) => {
+const createSnowMarkers = (snowCities,cityLon,cityLat) => {
+    let from = turf.point([cityLon,cityLat]);
+    let tempSnow = [];
     snowCities.data.forEach((item) => {
         let newMark = {
             type: 'Feature',
@@ -33,26 +35,41 @@ const createSnowMarkers = (snowCities) => {
             properties: {
                 title: 'Currently snowing here:',
                 description: `${item.city.name}, ${item.city.country}`,
-                // distance: 0  work here to create function for distance.
+                distance: Math.round(turf.distance(from, turf.point([item.city.coord.lon,item.city.coord.lat])))
             }
         }
-        geojson.features.push(newMark);
+        tempSnow.push(newMark);
+        // geojson.features.push(newMark);
     })
+    // sort the markers by distance and push the first 10 to geojson
+    tempSnow.sort(function(a, b) {
+        if (a.properties.distance > b.properties.distance) {
+            return 1;
+        }
+        if (a.properties.distance < b.properties.distance) {
+            return -1;
+        }
+        return 0; // a must be equal to b
+        });
+        for (i=0;i<10;i++){
+            geojson.features.push(tempSnow[i]);
+        }
+        console.log(tempSnow);
 }
 
 // add markers to map
-const addMarkersToMap = (geojson) => {
+const addMarkersToMap = (geojson,markerClass) => {
     geojson.features.forEach(function(marker) {
 
     // create a HTML element for each feature
     var el = document.createElement('div');
-    el.className = 'marker';
+    el.className = markerClass;
 
     // make a marker for each feature and add to the map + popup
     let mark = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p><p>' + marker.properties.distance +' Kilometers' + '</p>'))
         .addTo(map);
         curentMarkers.push(mark);
     });
@@ -92,13 +109,14 @@ $('#locationButton').click ((e) => {
         removeMarkers(curentMarkers);
         removeMarkers(curentUserMarker);
         curentMarkers = [];
+        curentUserMarker = [];
         createUserMarker(data.longitude,data.latitude);
         map.flyTo({
             center: [data.longitude,data.latitude],
             zoom: 2.7
             });
-        createSnowMarkers(snowCities);
-        addMarkersToMap(geojson);
+        createSnowMarkers(snowCities,data.longitude,data.latitude);
+        addMarkersToMap(geojson,"marker");
     })
     .catch(function(error) {
     console.log(error)
@@ -116,13 +134,14 @@ $('#submitCity').click ((e) => {
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
+        console.log(data);
         createUserMarker(data.features[0].center[0],data.features[0].center[1]);
         map.flyTo({
             center: [data.features[0].center[0],data.features[0].center[1]],
             zoom: 2.7
             });
-        createSnowMarkers(snowCities);
-        addMarkersToMap(geojson);
+        createSnowMarkers(snowCities,data.features[0].center[0],data.features[0].center[1]);
+        addMarkersToMap(geojson,"marker");
     })
     .catch(function(error) {
     console.log(error)
