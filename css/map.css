@@ -59,3 +59,11 @@ body {
         -khtml-border-radius: 50%;
         vertical-align: middle;
     }
+    .skiMarker {
+        background-image: url('../images/snowflake.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        }
