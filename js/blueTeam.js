@@ -15,3 +15,10 @@
     //         $('nav').removeClass('navBackground');
     //     }
     // })
+
+    var submitCity = document.getElementById('submitCity')
+    var locationButton = document.getElementById('locationButton')
+
+
+
+
