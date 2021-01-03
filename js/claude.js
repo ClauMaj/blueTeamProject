@@ -69,7 +69,7 @@ const createSkiMarker = (ski, long, lat) => {
             },
             properties: {
                 title: 'Slopes found here:',
-                description: `${item.areaName[0].value}`,
+                description: `${item.areaName[0].value}, ${item.region[0].value} `,
                 distance: Math.round(turf.distance(from, turf.point([parseFloat(item.longitude), parseFloat(item.latitude)]))),
                 class: "skiMarker"
             }
@@ -91,9 +91,12 @@ function skiMarkerLocal (longitude, latitude,pickedCity) {
     .then(response => response.json())
     .then((data) => {
         console.log(data);
-        createSkiMarker(data, longitude, latitude)
-
+        createSkiMarker(data, longitude, latitude);
     })
+    .catch(function(error) {
+        console.log(error);
+        addMarkersToMap(geojson,"marker");
+        });
     
     }
 // add markers to map
