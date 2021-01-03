@@ -5,8 +5,8 @@ $(() => {
   const input = document.getElementById('userInput');
   const apiKey = "31faa444f98c7147da938529e5c20a15";//openweathermap
   const apiKey2 = "9720c43533e24b5bb25151217202312"//worldweatheronline
-  const url1 = `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=Jackson, Wy&&appid=${apiKey}`  
-  const url2 = `https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=Jackson, Wy&format=json&num_of_results=3&wct=Ski`
+  // const url1 = `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=Jackson, Wy&&appid=${apiKey}`  
+  // const url2 = `https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=Jackson, Wy&format=json&num_of_results=3&wct=Ski`
   
   $('#submitCity').click ((e) => {
     e.preventDefault();
