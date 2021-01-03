@@ -3,6 +3,7 @@ $(() => {
     
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2xhdW1haiIsImEiOiJja2l5dGVzeDcyaXUzMzRwNGJ3ZjE4b2tqIn0.1PMSrPzu3pEeNqUTGTaQbg';
+const apiKey2 = "9720c43533e24b5bb25151217202312"//worldweatheronline
 var curentMarkers = [];
 var curentUserMarker = [];
 
@@ -54,9 +55,47 @@ const createSnowMarkers = (snowCities,cityLon,cityLat) => {
         for (i=0;i<10;i++){
             geojson.features.push(tempSnow[i]);
         }
-        console.log(tempSnow);
 }
 
+  //create marker for ski resorts nearby
+const createSkiMarker = (ski, long, lat) => {
+    let from = turf.point([long,lat]);
+    ski.search_api.result.forEach((item) => {
+        let newSkiMark = {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [parseFloat(item.longitude), parseFloat(item.latitude)]
+            },
+            properties: {
+                title: 'Slopes found here:',
+                description: `${item.areaName[0].value}`,
+                distance: Math.round(turf.distance(from, turf.point([parseFloat(item.longitude), parseFloat(item.latitude)]))),
+                class: "skiMarker"
+            }
+        }
+        console.log(newSkiMark);
+        geojson.features.push(newSkiMark);
+    })
+    geojson.features.forEach((item) => {
+        if (item.properties.class === "skiMarker"){
+            addMarkersToMap(geojson,"skiMarker");
+        }
+        else {
+            addMarkersToMap(geojson,"marker");
+        }
+    })
+}
+function skiMarkerLocal (longitude, latitude,pickedCity) {
+    fetch(`https://api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${pickedCity}&format=json&num_of_results=3&wct=Ski`)
+    .then(response => response.json())
+    .then((data) => {
+        console.log(data);
+        createSkiMarker(data, longitude, latitude)
+
+    })
+    
+    }
 // add markers to map
 const addMarkersToMap = (geojson,markerClass) => {
     geojson.features.forEach(function(marker) {
@@ -116,7 +155,7 @@ $('#locationButton').click ((e) => {
             zoom: 2.7
             });
         createSnowMarkers(snowCities,data.longitude,data.latitude);
-        addMarkersToMap(geojson,"marker");
+        skiMarkerLocal (data.longitude, data.latitude,data.city);
     })
     .catch(function(error) {
     console.log(error)
@@ -141,7 +180,7 @@ $('#submitCity').click ((e) => {
             zoom: 2.7
             });
         createSnowMarkers(snowCities,data.features[0].center[0],data.features[0].center[1]);
-        addMarkersToMap(geojson,"marker");
+        skiMarkerLocal (data.features[0].center[0], data.features[0].center[1],pickedCity);
     })
     .catch(function(error) {
     console.log(error)
