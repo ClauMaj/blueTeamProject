@@ -14,42 +14,10 @@ var map = new mapboxgl.Map({
     zoom: 2.7
 });
 
-// create location points on map
+// create location points for the map
 var geojson = {
     type: 'FeatureCollection',
-    features: [{
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-77.032, 38.913]
-    },
-    properties: {
-        title: 'Snow 1',
-        description: 'Washington, D.C.'
-    }
-    },
-    {
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-104.9653, 39.7348]
-    },
-    properties: {
-        title: 'Snow 3',
-        description: 'Denver, Colorado'
-    }
-    },
-    {
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        coordinates: [-122.414, 37.776]
-    },
-    properties: {
-        title: 'Snow 2',
-        description: 'San Francisco, California'
-    }
-    }]
+    features: []
 };
 
 // create markers for snow
@@ -64,7 +32,8 @@ const createSnowMarkers = (snowCities) => {
             },
             properties: {
                 title: 'Snow',
-                description: `${item.city.name}, ${item.city.country}`
+                description: `${item.city.name}, ${item.city.country}`,
+                // distance: 0  work here to create function for distance.
             }
         }
         geojson.features.push(newMark);
@@ -78,7 +47,6 @@ const addMarkersToMap = (geojson) => {
     // create a HTML element for each feature
     var el = document.createElement('div');
     el.className = 'marker';
-
 
     // make a marker for each feature and add to the map + popup
     let mark = new mapboxgl.Marker(el)
@@ -140,7 +108,6 @@ $('#locationButton').click ((e) => {
 $('#submitCity').click ((e) => {
     e.preventDefault();
     let pickedCity = $('#cityInput').val();
-    console.log(pickedCity);
     fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickedCity}.json?access_token=${mapboxgl.accessToken}`)
     .then(response => response.json())
     .then((data) => {
@@ -153,6 +120,8 @@ $('#submitCity').click ((e) => {
             center: [data.features[0].center[0],data.features[0].center[1]],
             zoom: 2.7
             });
+        createSnowMarkers(snowCities);
+        addMarkersToMap(geojson);
     })
     .catch(function(error) {
     console.log(error)
@@ -171,7 +140,7 @@ $('#submitCity').click ((e) => {
 //         console.log("Please search for a valid url");
 //     });
 
-console.log(map);
+
 
 }) // jQuery end
 

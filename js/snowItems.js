@@ -9,5 +9,3 @@ let snowCities = JSON.parse(rawdata);
 // console.log(snowCities.data[0]);
 // console.log(snowCities.data.length);
 // console.log(snowCities.data[0].weather[0].id);
-
-console.log(snowCities.data[0].city.coord.lon)
