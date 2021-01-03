@@ -160,7 +160,11 @@ ul li{
     align-content: center;
 }
 
+.fa-li { /* font awesome icons */
+    margin: 10px 0;
+}
 
+    
 
 
 

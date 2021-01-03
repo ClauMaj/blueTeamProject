@@ -8,24 +8,22 @@ $(() => {
   const url1 = `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?q=Jackson, Wy&&appid=${apiKey}`  
   const url2 = `https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=Jackson, Wy&format=json&num_of_results=3&wct=Ski`
   
-  return fetch(url2); //ski api fetch
-  
+  $('#submitCity').click ((e) => {
+    e.preventDefault();
+    let pickedCity = $('#cityInput').val();
+    console.log(pickedCity);
+    fetch(`https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${pickedCity}&format=json&num_of_results=3&wct=Ski`)
+    .then(response => response.json())
+    .then((data) => {
+        createUserMarker(ski.search_api.result[0, 1, 2].areaName[0].value)
+        removeMarkers(curentMarkers);
+        removeMarkers(curentUserMarker);
+        curentMarkers = [];
+        curentUserMarker = [];
+
+    })
+
   })
-
-  .then(response => response.json())
-
-  .then(data => {
-        let data = ski;
-        console.log(ski);
-
-  })
-
-  .catch((error)=>{
-      console.log(error)
-  
-    
-  })
-  
   // fetch(url1)  
 
   // .then(response => response.json())
@@ -57,6 +55,13 @@ $(() => {
       
       
 })
+  
+  
+
+
+
+    
+
     
 
   
