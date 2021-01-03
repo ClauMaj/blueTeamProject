@@ -9,30 +9,32 @@ $(() => {
   // const url2 = `https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=Jackson, Wy&format=json&num_of_results=3&wct=Ski`
   
   // remove elements from map
-  const removeMarkers = (currentMarkers) => {
-    if (currentMarkers!== null) {
-        for (var i = currentMarkers.length- 1; i >= 0; i--) {
-            currentMarkers[i].remove();
-        }
-    }
-    geojson.features = [];
-}
+//   const removeMarkers = (currentMarkers) => {
+//     if (currentMarkers!== null) {
+//         for (var i = currentMarkers.length- 1; i >= 0; i--) {
+//             currentMarkers[i].remove();
+//         }
+//     }
+//     geojson.features = [];
+// }
   //create marker for ski resorts nearby
-  const createSkiMarker = (skiCities) => {
-    skiCities.data.forEach((item) => {
+  const createSkiMarker = (ski, long, lat) => {
+    let from = turf.point([cityLon,cityLat]);
+    ski.search_api.result.forEach((item) => {
         let newSkiMark = {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [item.city.coord.lon, item.city.coord.lat]
+                coordinates: [ski.search_api.result.longitude, ski.search_api.result.latitude]
             },
             properties: {
                 title: 'Slopes found here:',
-                description: `${item.resort.name}, ${item.resort.country}`,
+                description: `${item.value}`,
                 // distance: 0  work here to create function for distance.
+                distance: Math.round(turf.distance(from, turf.point([ski.search_api.result.longitude, ski.search_api.result.latitude])))
             }
         }
-        geojson.features.push(newMark);
+        geojson.features.push(newSkiMark);
     })
 }
 // api call for ski resorts nearby
@@ -40,18 +42,19 @@ $('#submitCity').click ((e) => {
   e.preventDefault();
   let pickedCity = $('#cityInput').val();
   console.log(pickedCity);
-  fetch(`https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${pickedCity}&format=json&num_of_results=3&wct=Ski`)
-  .then(response => response.json())
-  .then((data) => {
-      createSkiMarker(ski.search_api.result[0].areaName[0].value, ski.search_api.result[0].longitude, ski.search_api.result[0].latitude)
-      createSkiMarker(ski.search_api.result[1].areaName[0].value, ski.search_api.result[1].longitude, ski.search_api.result[1].latitude)
-      createSkiMarker(ski.search_api.result[2].areaName[0].value, ski.search_api.result[2].longitude, ski.search_api.result[2].latitude)
-      removeMarkers(curentMarkers);
-      removeMarkers(curentUserMarker);
-      curentMarkers = [];
-      curentUserMarker = [];
+  function skiMarkerLocal (longitude, latitude) {
+    fetch(`https://cors-anywhere.herokuapp.com/api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${pickedCity}&format=json&num_of_results=3&wct=Ski`)
 
-  })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      createSkiMarker(data, longitude, latitude)
+
+    })
+    
+  }  
+
+      
 
   // })
   // fetch(url1)  
