@@ -31,7 +31,7 @@ const createSnowMarkers = (snowCities) => {
                 coordinates: [item.city.coord.lon, item.city.coord.lat]
             },
             properties: {
-                title: 'Snow',
+                title: 'Currently snowing here:',
                 description: `${item.city.name}, ${item.city.country}`,
                 // distance: 0  work here to create function for distance.
             }
@@ -66,6 +66,7 @@ const removeMarkers = (currentMarkers) => {
             currentMarkers[i].remove();
         }
     }
+    geojson.features = [];
 }
 // make a marker for user
 const createUserMarker = (lon,lat) => {
