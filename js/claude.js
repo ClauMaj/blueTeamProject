@@ -141,7 +141,7 @@ const createElements = (geojson) => {
         
         map.flyTo({
             center: [parseFloat(e.target.children[0].innerText),parseFloat(e.target.children[1].innerText)],
-            zoom: 7
+            zoom: 10
             });
         
     });
@@ -149,7 +149,7 @@ const createElements = (geojson) => {
         
         map.flyTo({
             center: [parseFloat(e.target.children[0].innerText),parseFloat(e.target.children[1].innerText)],
-            zoom: 7
+            zoom: 10
             });
         
     });
