@@ -4,20 +4,35 @@
         });
     });
 
-    // Scrolling Effect
 
-    // $(window).on("scroll", function() {
-    //     if($(window).scrollTop()) {
-    //         $('nav').addClass('navBackground');
-    //     }
+    $(document).ready(function(){
+        setTimeout(function(){
+            $('#myModal').modal('show');
+        }, 5000);
+	});
 
-    //     else {
-    //         $('nav').removeClass('navBackground');
-    //     }
+
+
+
+
+    // var submitButton = document.getElementById('submitCity')
+
+    // submitButton.addEventListener('click', () => {
+    //     let backgroundText = document.getElementById('backgroundText')
+    //     backgroundText.setAttribute('display','none')
+
+    // })
+    
+
+    // var locationButton = document.getElementById('locationButton')
+
+    // locationButton.addEventListener('click', () => {
+    //     let backgroundText = document.getElementById('backgroundText')
+    //     backgroundText.setAttribute('display','none')
     // })
 
-    var submitCity = document.getElementById('submitCity')
-    var locationButton = document.getElementById('locationButton')
+
+
 
 
 
