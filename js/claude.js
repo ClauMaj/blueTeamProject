@@ -89,7 +89,7 @@ function skiMarkerLocal (longitude, latitude) {
         console.log(error);
         if (latitude <= 90){
             counter+=1;
-            skiMarkerLocal (longitude, latitude+2)
+            skiMarkerLocal (longitude, latitude+2);
         }
         else{
             addMarkersToMap(geojson);
