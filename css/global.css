@@ -179,9 +179,10 @@ ul li{
 }
 .snowText2{
     font-family: Frostbitten Wanker;
-    color: antiquewhite;
+    color: rgb(16, 52, 87);
     font-style: normal;
     font-size: 25px;
+    text-align: center;
 }
 
 

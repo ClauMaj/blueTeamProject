@@ -23,8 +23,8 @@
         stroke: white;
         stroke-dasharray: 7% 28%;
         stroke-width: 3px;
-        -webkit-animation: stroke-offset 4s linear;
-                animation: stroke-offset 4s linear;
+        -webkit-animation: stroke-offset 5s linear;
+                animation: stroke-offset 5s linear;
     }
     .webcoderskull-1:nth-child(1) {
         stroke: #61BCE8;
