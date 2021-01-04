@@ -36,11 +36,11 @@ const createSnowMarkers = (snowCities,cityLon,cityLat) => {
             properties: {
                 title: 'Currently snowing here:',
                 description: `${item.city.name}, ${item.city.country}`,
-                distance: Math.round(turf.distance(from, turf.point([item.city.coord.lon,item.city.coord.lat])))
+                distance: Math.round(turf.distance(from, turf.point([item.city.coord.lon,item.city.coord.lat]))),
+                class: "marker"
             }
         }
         tempSnow.push(newMark);
-        // geojson.features.push(newMark);
     })
     // sort the markers by distance and push the first 10 to geojson
     tempSnow.sort(function(a, b) {
@@ -74,39 +74,40 @@ const createSkiMarker = (ski, long, lat) => {
                 class: "skiMarker"
             }
         }
-        console.log(newSkiMark);
         geojson.features.push(newSkiMark);
     })
-    geojson.features.forEach((item) => {
-        if (item.properties.class === "skiMarker"){
-            addMarkersToMap(geojson,"skiMarker");
-        }
-        else {
-            addMarkersToMap(geojson,"marker");
-        }
-    })
+            addMarkersToMap(geojson);
 }
-function skiMarkerLocal (longitude, latitude,pickedCity) {
-    fetch(`https://api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${pickedCity}&format=json&num_of_results=3&wct=Ski`)
+var counter = 0;
+function skiMarkerLocal (longitude, latitude) {
+    fetch(`https://api.worldweatheronline.com/premium/v1/search.ashx?key=${apiKey2}&q=${latitude},${longitude}&format=json&num_of_results=7&wct=Ski`)
     .then(response => response.json())
     .then((data) => {
-        console.log(data);
-        createSkiMarker(data, longitude, latitude);
+            createSkiMarker(data, longitude, latitude-(2*counter));
     })
     .catch(function(error) {
         console.log(error);
-        addMarkersToMap(geojson,"marker");
+        if (latitude <= 90){
+            counter+=1;
+            skiMarkerLocal (longitude, latitude+2)
+        }
+        else{
+            addMarkersToMap(geojson);
+        }
         });
     
     }
 // add markers to map
-const addMarkersToMap = (geojson,markerClass) => {
+const addMarkersToMap = (geojson) => {
     geojson.features.forEach(function(marker) {
-
     // create a HTML element for each feature
     var el = document.createElement('div');
-    el.className = markerClass;
-
+    if (marker.properties.class === "marker"){
+        el.className = "marker";
+    }
+    else if (marker.properties.class === "skiMarker"){
+        el.className = "skiMarker";
+    }
     // make a marker for each feature and add to the map + popup
     let mark = new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
@@ -115,6 +116,7 @@ const addMarkersToMap = (geojson,markerClass) => {
         .addTo(map);
         curentMarkers.push(mark);
     });
+    counter = 0;
 }
 
 
@@ -128,13 +130,13 @@ const removeMarkers = (currentMarkers) => {
     geojson.features = [];
 }
 // make a marker for user
-const createUserMarker = (lon,lat) => {
+const createUserMarker = (lon,lat,city) => {
     var userel = document.createElement('div');
     userel.className = 'userMarker';
     var userMark = new mapboxgl.Marker(userel)
         .setLngLat([lon,lat])
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML('<h3>User</h3><p>You are here!</p>'))
+        .setHTML(`<h3>${city}</h3><p>You are here!</p>`))
         .addTo(map);
         curentUserMarker.push(userMark);
 };
@@ -146,19 +148,17 @@ $('#locationButton').click ((e) => {
     fetch('https://ipapi.co/json/')
     .then(response => response.json())
     .then((data) => {
-        console.log(data);
-        console.log(curentMarkers);
         removeMarkers(curentMarkers);
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
-        createUserMarker(data.longitude,data.latitude);
+        createUserMarker(data.longitude,data.latitude,data.city);
         map.flyTo({
             center: [data.longitude,data.latitude],
             zoom: 2.7
             });
         createSnowMarkers(snowCities,data.longitude,data.latitude);
-        skiMarkerLocal (data.longitude, data.latitude,data.city);
+        skiMarkerLocal (data.longitude, data.latitude);
     })
     .catch(function(error) {
     console.log(error)
@@ -176,14 +176,13 @@ $('#submitCity').click ((e) => {
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
-        console.log(data);
-        createUserMarker(data.features[0].center[0],data.features[0].center[1]);
+        createUserMarker(data.features[0].center[0],data.features[0].center[1],data.features[0].place_name);
         map.flyTo({
             center: [data.features[0].center[0],data.features[0].center[1]],
             zoom: 2.7
             });
         createSnowMarkers(snowCities,data.features[0].center[0],data.features[0].center[1]);
-        skiMarkerLocal (data.features[0].center[0], data.features[0].center[1],pickedCity);
+        skiMarkerLocal (data.features[0].center[0], data.features[0].center[1]);
     })
     .catch(function(error) {
     console.log(error)
