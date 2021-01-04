@@ -104,13 +104,13 @@ const createElements = (geojson) => {
     let $titleLiSnow = $('<li>',{
         class: "snowLi",
         text: 'Currently snowing here(closest 10 cities):',
-        style: "color: blue;"
+        style: "color: #0069D9;font-size: 1.5rem;"
     });
     $('#snowUL').append($titleLiSnow);
     let $titleLiSki = $('<li>',{
         class: "snowLi",
         text: 'Slopes found here(closest slopes):',
-        style: "color: blue;"
+        style: "color: #0069D9;font-size: 1.5rem"
     });
     $('#slopeUL').append($titleLiSki);
     geojson.features.forEach((item) => {
