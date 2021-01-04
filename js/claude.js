@@ -105,18 +105,54 @@ const createElements = (geojson) => {
         if (item.properties.class === "marker"){
             let $newLi = $('<li>',{
                 class: "snowLi",
-                text: `${item.properties.description} - ${item.properties.distance}`
+                text: `${item.properties.description} - ${item.properties.distance} Kilometers`
             });
+            let $newPLon = $('<p>',{
+                style: "display: none;",
+                text: item.geometry.coordinates[0],
+            });
+            let $newPLat = $('<p>',{
+                style: "display: none;",
+                text: item.geometry.coordinates[1],
+            });
+            $newLi.append($newPLon);
+            $newLi.append($newPLat);
             $('#snowUL').append($newLi);
         }
         else if (item.properties.class === "skiMarker"){
             let $newLi = $('<li>',{
-                class: "slopeLi",
-                text: `${item.properties.description} - ${item.properties.distance}`
+                class: "snowLi",
+                text: `${item.properties.description} - ${item.properties.distance} Kilometers`
             });
+            let $newPLon = $('<p>',{
+                style: "display: none;",
+                text: item.geometry.coordinates[0],
+            });
+            let $newPLat = $('<p>',{
+                style: "display: none;",
+                text: item.geometry.coordinates[1],
+            });
+            $newLi.append($newPLon);
+            $newLi.append($newPLat);
             $('#slopeUL').append($newLi);
         }
     })
+    $('#snowUL').click ((e) => {
+        
+        map.flyTo({
+            center: [parseFloat(e.target.children[0].innerText),parseFloat(e.target.children[1].innerText)],
+            zoom: 7
+            });
+        
+    });
+    $('#slopeUL').click ((e) => {
+        
+        map.flyTo({
+            center: [parseFloat(e.target.children[0].innerText),parseFloat(e.target.children[1].innerText)],
+            zoom: 7
+            });
+        
+    });
 
 }
 // add markers to map
@@ -175,6 +211,8 @@ $('#locationButton').click ((e) => {
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
+        $('#snowUL').html("");
+        $('#slopeUL').html("");
         createUserMarker(data.longitude,data.latitude,data.city);
         map.flyTo({
             center: [data.longitude,data.latitude],
@@ -199,6 +237,8 @@ $('#submitCity').click ((e) => {
         removeMarkers(curentUserMarker);
         curentMarkers = [];
         curentUserMarker = [];
+        $('#snowUL').html("");
+        $('#slopeUL').html("");
         createUserMarker(data.features[0].center[0],data.features[0].center[1],data.features[0].place_name);
         map.flyTo({
             center: [data.features[0].center[0],data.features[0].center[1]],
