@@ -101,20 +101,20 @@ function skiMarkerLocal (longitude, latitude) {
     // snowUl
     // slopeUl
 const createElements = (geojson) => {
-    geojson.forEach((item) => {
+    geojson.features.forEach((item) => {
         if (item.properties.class === "marker"){
             let $newLi = $('<li>',{
                 class: "snowLi",
                 text: `${item.properties.description} - ${item.properties.distance}`
             });
-            $('snowUl').append($newLi);
+            $('#snowUL').append($newLi);
         }
-        else if (marker.properties.class === "skiMarker"){
+        else if (item.properties.class === "skiMarker"){
             let $newLi = $('<li>',{
                 class: "slopeLi",
                 text: `${item.properties.description} - ${item.properties.distance}`
             });
-            $('slopeUl').append($newLi);
+            $('#slopeUL').append($newLi);
         }
     })
 
