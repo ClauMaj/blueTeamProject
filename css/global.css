@@ -15,6 +15,7 @@ body {
 ul li{
     text-decoration: none;
     list-style: none;
+    display: inline;
 }
 
 .graphContainer{
@@ -35,7 +36,7 @@ ul li{
     font-size: 20px;
     line-height: 30px;
     display: flex;
-    text-align: justify;
+    text-align: center;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -58,7 +59,6 @@ ul li{
 }
 
 
-
 .logo {
     line-height: 60px;
     position: fixed;
@@ -76,7 +76,7 @@ ul li{
 
 
 .bodyBackground{
-    background-image: url("../images/snowglobe2.jpeg"), url("../images/gradient2.jpg");
+    background-image: url("../images/snowglobe2.jpeg");
     height: 100vh;
     width: 100vw;
     background-attachment:local;
@@ -138,6 +138,23 @@ ul li{
 
 }
 
+.cardBackground{
+    background-color: #172C5B;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-style: none;
+}
+
+
+.cardBackground2{
+    background-color: #172C5B;
+    border-style: none;
+}
+.cardBackground3{
+    background-color: #61BCE8
+}
+
 
 
 /* text settings */
@@ -151,13 +168,14 @@ ul li{
 
 .text2{
     color: antiquewhite;
-    text-shadow: black;
+    text-shadow: 1px 1px rgb(150, 150, 150);
 }
 
 .snowText{
     font-family: Frostbitten Wanker;
     color: antiquewhite;
     font-style: normal;
+    text-shadow: 2px 2px rgb(16, 52, 87);
 }
 .snowText2{
     font-family: Frostbitten Wanker;
@@ -165,6 +183,7 @@ ul li{
     font-style: normal;
     font-size: 25px;
 }
+
 
 .sportsText{
     font-family: KR Winter Sports;
@@ -193,46 +212,25 @@ ul li{
     height: 100%;
 }
 
+.rowHeight3{
+    height: 250px;
+}
+
 .searchBarContainer {
     display: flex;
     width: 100%; /* Set full-width to expand the whole page */
-    height: 300px;
+    height: 200px;
     overflow: visible;
     justify-content: center;
     align-items: center;
     align-content: center;
+    position: relative;
+    z-index: 1000;
 }
 
 .fa-li { /* font awesome icons */
     margin: 10px 0;
 }
-
-
-.cardBackground{
-    background-color: #172C5B;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    border-style: none;
-}
-
-
-.cardBackground2{
-    background-color: #172C5B;
-    border-style: none;
-}
-.cardBackground3{
-    background-color: #61BCE8
-}
-
-card{
-    border-style: none;
-}
-
-
-
-
-
 
 
 @media(max-width: 786px) {
@@ -244,7 +242,7 @@ card{
         font-size: 20px;
         line-height: 30px;
         display: flex;
-        text-align: justify;
+        text-align: center;
         justify-content: center;
         align-items: center;
         position: relative;
@@ -259,30 +257,15 @@ card{
         top: 0;
         margin-top: 16px;
     }
-/* 
-    nav ul {
-        max-height: 0px;
-        
+
+
+    .z1{
+        z-index: 100;
+        position: absolute;
     }
 
-    nav.black ul {
-        background: #000;
+    .z2{
+        z-index: 100;
+        position: absolute;
     }
-
-    .showing {
-        max-height: 34em;
-    }
-
-    nav ul li {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 24px;
-        text-align: center;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-/*  */
-}
 

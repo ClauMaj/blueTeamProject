@@ -1,0 +1,67 @@
+    .webcoderskull {
+        font-size: 0.5em;
+    }
+    .webcoderskull2 {
+        font-size: 0.15em;
+    }
+
+
+    
+    svg {
+        position: absolute;
+        width: 100%;
+        height: 30%;
+        background: transparent;
+        background-size: 0.12em 100%;
+        font: 16em/1 Arial;
+        z-index: 0;
+        opacity: 100%;
+    }
+    
+    .webcoderskull-1 {
+        fill: none;
+        stroke: white;
+        stroke-dasharray: 7% 28%;
+        stroke-width: 3px;
+        -webkit-animation: stroke-offset 4s linear;
+                animation: stroke-offset 4s linear;
+    }
+    .webcoderskull-1:nth-child(1) {
+        stroke: #61BCE8;
+        stroke-dashoffset: 7%;
+    }
+    .webcoderskull-1:nth-child(2) {
+        stroke: #172C5B;
+        stroke-dashoffset: 14%;
+    }
+    .webcoderskull-1:nth-child(3) {
+        stroke: white;
+        stroke-dashoffset: 21%;
+    }
+    .webcoderskull-1:nth-child(4) {
+        stroke: antiquewhite;
+        stroke-dashoffset: 28%;
+    }
+    .webcoderskull-1:nth-child(5) {
+        stroke: #61BCE8;
+        stroke-dashoffset: 35%;
+        text-shadow: 1px 1px #172C5B;
+    }
+    
+    @-webkit-keyframes stroke-offset {
+        50% {
+        stroke-dashoffset: 35%;
+        stroke-dasharray: 0 87.5%;
+        }
+    }
+    
+    @keyframes stroke-offset {
+        50% {
+        stroke-dashoffset: 35%;
+        stroke-dasharray: 0 87.5%;
+        }
+    }
+
+
+
+    
