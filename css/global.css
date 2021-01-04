@@ -98,7 +98,7 @@ ul li{
 }
 
 .secondBackground{
-    background-image: url("../images/gradient2.jpg"), url("../images/gradient2.jpg");
+    background-image: url("../images/gradient2.jpg");
     height: 100%;
     width: 100%;
     background-attachment:local;
