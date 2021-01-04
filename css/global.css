@@ -206,6 +206,7 @@ ul li{
 
 .rowHeight{
     height: 450px;
+    margin-bottom: 15px;
 }
 
 .rowHeight2{
@@ -269,3 +270,4 @@ ul li{
         position: absolute;
     }
 
+}
