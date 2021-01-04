@@ -39,6 +39,7 @@ body {
         width: 60%;
         height: 90%;
     }
+    
     .mapCircle>div>div:first-child {
         border-radius: 338px;
         -webkit-border-radius: 338px;
@@ -50,6 +51,7 @@ body {
         -moz-border-radius: 50%;
         border-radius: 50%;
         -khtml-border-radius: 50%;
+        opacity: 95%;
     }
     
     .activity_rounded img  {
