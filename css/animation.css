@@ -16,6 +16,8 @@
         font: 16em/1 Arial;
         z-index: 0;
         opacity: 100%;
+        stroke: #61BCE8;
+        stroke-dashoffset: 7%;
     }
     
     .webcoderskull-1 {
