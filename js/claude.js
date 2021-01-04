@@ -101,6 +101,18 @@ function skiMarkerLocal (longitude, latitude) {
     // snowUl
     // slopeUl
 const createElements = (geojson) => {
+    let $titleLiSnow = $('<li>',{
+        class: "snowLi",
+        text: 'Currently snowing here(closest 10 cities):',
+        style: "color: blue;"
+    });
+    $('#snowUL').append($titleLiSnow);
+    let $titleLiSki = $('<li>',{
+        class: "snowLi",
+        text: 'Slopes found here(closest slopes):',
+        style: "color: blue;"
+    });
+    $('#slopeUL').append($titleLiSki);
     geojson.features.forEach((item) => {
         if (item.properties.class === "marker"){
             let $newLi = $('<li>',{
