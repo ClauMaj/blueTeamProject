@@ -97,6 +97,28 @@ function skiMarkerLocal (longitude, latitude) {
         });
     
     }
+
+    // snowUl
+    // slopeUl
+const createElements = (geojson) => {
+    geojson.forEach((item) => {
+        if (item.properties.class === "marker"){
+            let $newLi = $('<li>',{
+                class: "snowLi",
+                text: `${item.properties.description} - ${item.properties.distance}`
+            });
+            $('snowUl').append($newLi);
+        }
+        else if (marker.properties.class === "skiMarker"){
+            let $newLi = $('<li>',{
+                class: "slopeLi",
+                text: `${item.properties.description} - ${item.properties.distance}`
+            });
+            $('slopeUl').append($newLi);
+        }
+    })
+
+}
 // add markers to map
 const addMarkersToMap = (geojson) => {
     geojson.features.forEach(function(marker) {
@@ -117,6 +139,7 @@ const addMarkersToMap = (geojson) => {
         curentMarkers.push(mark);
     });
     counter = 0;
+    createElements(geojson);
 }
 
 
